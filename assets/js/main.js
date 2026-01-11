@@ -332,9 +332,14 @@ import '../scss/main.scss';
           $bioDetails.removeAttr('open');
         }
 
-        // Return focus to the table header area for accessibility
-        const $firstToggle = $root.find('.packages-details__section-title[data-pd-row-toggle]').first();
-        focusElement($firstToggle.length ? $firstToggle : $root);
+        // Scroll to the beginning of the entire module
+        const $module = $root.closest('.module-packages-details');
+        if ($module.length) {
+          const node = $module[0];
+          if (node && typeof node.scrollIntoView === 'function') {
+            node.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
+          }
+        }
       };
 
       const resetSectionsState = ($root) => {

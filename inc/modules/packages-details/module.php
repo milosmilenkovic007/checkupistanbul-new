@@ -15,6 +15,32 @@ $selected    = $data['packages'] ?? array();
 $additional_package_raw = $data['additional_package'] ?? array();
 $additional_package_id = 0;
 
+// Get style settings
+$section_title_bg = $data['section_title_bg'] ?? '#f2ecf2';
+$section_title_color = $data['section_title_color'] ?? '#053b3f';
+$col0_bg_tab0 = $data['col0_bg_tab0'] ?? '#f2ecf2';
+$col0_color_tab0 = $data['col0_color_tab0'] ?? '#35062a';
+$col1_bg_tab0 = $data['col1_bg_tab0'] ?? '#053b3f';
+$col1_color_tab0 = $data['col1_color_tab0'] ?? '#ffffff';
+$col2_bg_tab0 = $data['col2_bg_tab0'] ?? '#fed36f';
+$col2_color_tab0 = $data['col2_color_tab0'] ?? '#35062a';
+$col1_bg_tab1 = $data['col1_bg_tab1'] ?? '#053b3f';
+$col1_color_tab1 = $data['col1_color_tab1'] ?? '#ffffff';
+$col2_bg_tab1 = $data['col2_bg_tab1'] ?? '#fed36f';
+$col2_color_tab1 = $data['col2_color_tab1'] ?? '#35062a';
+$col1_bg_tab2 = $data['col1_bg_tab2'] ?? '#053b3f';
+$col1_color_tab2 = $data['col1_color_tab2'] ?? '#ffffff';
+$col2_bg_tab2 = $data['col2_bg_tab2'] ?? '#fed36f';
+$col2_color_tab2 = $data['col2_color_tab2'] ?? '#35062a';
+
+// Debug style values received in module
+if ( current_user_can( 'manage_options' ) ) {
+    error_log( 'Module received - section_title_bg: ' . $section_title_bg );
+    error_log( 'Module received - col0_bg_tab0: ' . $col0_bg_tab0 );
+    error_log( 'Module received - col1_bg_tab0: ' . $col1_bg_tab0 );
+    error_log( 'Module received - col2_bg_tab0: ' . $col2_bg_tab0 );
+}
+
 // Normalize relationship return values to IDs.
 if ( is_array( $selected ) ) {
     $selected = array_values( array_filter( array_map( function( $v ) {
@@ -202,9 +228,91 @@ if ( $pkg_count === 0 ) {
     }
     return;
 }
+
+// Generate unique ID for this module instance
+$module_id = 'pd-' . uniqid();
+
+// Build dynamic CSS for background and text colors
+$dynamic_css = "
+<style>
+#{$module_id} .packages-details.is-active-0 .packages-details__section-title {
+    background: {$section_title_bg};
+    color: {$section_title_color};
+}
+#{$module_id} .packages-details.is-active-0 .packages-details__items[data-col=\"0\"] {
+    background: {$col0_bg_tab0};
+}
+#{$module_id} .packages-details.is-active-0 .packages-details__items[data-col=\"0\"] .packages-details__list-item,
+#{$module_id} .packages-details.is-active-0 .packages-details__items[data-col=\"0\"] .packages-details__text {
+    color: {$col0_color_tab0};
+}
+#{$module_id} .packages-details.is-active-0 .packages-details__items[data-col=\"1\"] {
+    background: {$col1_bg_tab0};
+}
+#{$module_id} .packages-details.is-active-0 .packages-details__items[data-col=\"1\"] .packages-details__list-item,
+#{$module_id} .packages-details.is-active-0 .packages-details__items[data-col=\"1\"] .packages-details__text {
+    color: {$col1_color_tab0};
+}
+#{$module_id} .packages-details.is-active-0 .packages-details__items[data-col=\"2\"] {
+    background: {$col2_bg_tab0};
+}
+#{$module_id} .packages-details.is-active-0 .packages-details__items[data-col=\"2\"] .packages-details__list-item,
+#{$module_id} .packages-details.is-active-0 .packages-details__items[data-col=\"2\"] .packages-details__text {
+    color: {$col2_color_tab0};
+}
+#{$module_id} .packages-details.is-active-1 .packages-details__section-title {
+    background: {$section_title_bg};
+    color: {$section_title_color};
+}
+#{$module_id} .packages-details.is-active-1 .packages-details__items[data-col=\"1\"] {
+    background: {$col1_bg_tab1};
+}
+#{$module_id} .packages-details.is-active-1 .packages-details__items[data-col=\"1\"] .packages-details__list-item,
+#{$module_id} .packages-details.is-active-1 .packages-details__items[data-col=\"1\"] .packages-details__text {
+    color: {$col1_color_tab1};
+}
+#{$module_id} .packages-details.is-active-1 .packages-details__items[data-col=\"2\"] {
+    background: {$col2_bg_tab1};
+}
+#{$module_id} .packages-details.is-active-1 .packages-details__items[data-col=\"2\"] .packages-details__list-item,
+#{$module_id} .packages-details.is-active-1 .packages-details__items[data-col=\"2\"] .packages-details__text {
+    color: {$col2_color_tab1};
+}
+#{$module_id} .packages-details.is-active-2 .packages-details__section-title {
+    background: {$section_title_bg};
+    color: {$section_title_color};
+}
+#{$module_id} .packages-details.is-active-2 .packages-details__items[data-col=\"1\"] {
+    background: {$col1_bg_tab2};
+}
+#{$module_id} .packages-details.is-active-2 .packages-details__items[data-col=\"1\"] .packages-details__list-item,
+#{$module_id} .packages-details.is-active-2 .packages-details__items[data-col=\"1\"] .packages-details__text {
+    color: {$col1_color_tab2};
+}
+#{$module_id} .packages-details.is-active-2 .packages-details__items[data-col=\"2\"] {
+    background: {$col2_bg_tab2};
+}
+#{$module_id} .packages-details.is-active-2 .packages-details__items[data-col=\"2\"] .packages-details__list-item,
+#{$module_id} .packages-details.is-active-2 .packages-details__items[data-col=\"2\"] .packages-details__text {
+    color: {$col2_color_tab2};
+}
+</style>
+";
 ?>
 
-<section class="module-packages-details">
+<!-- Packages Details Style Debug -->
+<!-- section_title_bg: <?php echo esc_html( $section_title_bg ); ?> -->
+<!-- col0_bg_tab0: <?php echo esc_html( $col0_bg_tab0 ); ?> -->
+<!-- col1_bg_tab0: <?php echo esc_html( $col1_bg_tab0 ); ?> -->
+<!-- col2_bg_tab0: <?php echo esc_html( $col2_bg_tab0 ); ?> -->
+<!-- col1_bg_tab1: <?php echo esc_html( $col1_bg_tab1 ); ?> -->
+<!-- col2_bg_tab1: <?php echo esc_html( $col2_bg_tab1 ); ?> -->
+<!-- col1_bg_tab2: <?php echo esc_html( $col1_bg_tab2 ); ?> -->
+<!-- col2_bg_tab2: <?php echo esc_html( $col2_bg_tab2 ); ?> -->
+
+<?php echo $dynamic_css; ?>
+
+<section class="module-packages-details" id="<?php echo esc_attr( $module_id ); ?>">
     <div class="packages-details__inner">
         <?php if ( $heading ) : ?>
             <h2 class="packages-details__heading"><?php echo wp_kses_post( $heading ); ?></h2>

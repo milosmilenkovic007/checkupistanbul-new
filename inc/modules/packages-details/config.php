@@ -10,3 +10,4 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 // This config is automatically loaded by hello_child_register_flexible_layouts()
 // It enables the module to be included in flexible content layouts
+
