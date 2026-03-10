@@ -9,11 +9,11 @@
       "height": "large",
       "button_text": "Get a free consultation",
       "button_link": "#",
-      "bg_color": "#f2ecf2"
+      "bg_color": "#eff5ff"
     },
     {
       "acf_fc_layout": "packages-showcase",
-      "background_color": "#053b3f",
+      "background_color": "#262f3e",
       "title": "Packages",
       "packages": [
         {

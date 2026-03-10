@@ -13,7 +13,7 @@ $image    = $data['field_hero_image'] ?? $data['background_image'] ?? [];
 $height   = $data['field_hero_height'] ?? $data['height'] ?? 'large';
 $button_text = $data['field_hero_button_text'] ?? $data['button_text'] ?? '';
 $button_link = $data['field_hero_button_link'] ?? $data['button_link'] ?? '';
-$bg_color = $data['field_hero_bg_color'] ?? $data['bg_color'] ?? '#f2ecf2';
+$bg_color = $data['field_hero_bg_color'] ?? $data['bg_color'] ?? '#eff5ff';
 
 $height_class = 'hero--' . $height;
 if ( $height === 'full' ) {

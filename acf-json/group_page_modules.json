@@ -29,7 +29,7 @@
                         {"key": "field_hero_height", "label": "Hero Height", "name": "height", "type": "select", "choices": {"auto": "Auto", "small": "Small (400px)", "medium": "Medium (600px)", "large": "Large (800px)", "full": "Full Screen"}, "default_value": "large"},
                         {"key": "field_hero_button_text", "label": "Button Text", "name": "button_text", "type": "text"},
                         {"key": "field_hero_button_link", "label": "Button Link", "name": "button_link", "type": "url"},
-                        {"key": "field_hero_bg_color", "label": "Content Background Color", "name": "bg_color", "type": "color_picker", "default_value": "#f2ecf2"}
+                        {"key": "field_hero_bg_color", "label": "Content Background Color", "name": "bg_color", "type": "color_picker", "default_value": "#eff5ff"}
                     ],
                     "min": "",
                     "max": ""
@@ -81,28 +81,10 @@
                     "label": "Packages Details",
                     "display": "block",
                     "sub_fields": [
-                        {"key": "field_details_content_tab", "label": "Content", "name": "", "type": "tab", "placement": "top"},
                         {"key": "field_details_heading", "label": "Heading", "name": "heading", "type": "text"},
                         {"key": "field_details_description", "label": "Description", "name": "description", "type": "textarea", "rows": 3},
                         {"key": "field_details_packages", "label": "Select Packages", "name": "packages", "type": "relationship", "post_type": ["package"], "filters": ["search", "taxonomy"], "return_format": "id", "min": 1},
-                        {"key": "field_details_additional_package", "label": "Additional Package", "name": "additional_package", "type": "relationship", "post_type": ["package"], "filters": ["search", "taxonomy"], "return_format": "id", "max": 1, "instructions": "Optional: select one additional package to display horizontally below the comparison grid."},
-                        {"key": "field_details_style_tab", "label": "Style", "name": "", "type": "tab", "placement": "top"},
-                        {"key": "field_details_section_title_bg", "label": "Section Title Background", "name": "section_title_bg", "type": "color_picker", "default_value": "#f2ecf2", "instructions": "Background color for section titles (e.g., Medical Examinations)", "enable_opacity": true},
-                        {"key": "field_details_section_title_color", "label": "Section Title Text Color", "name": "section_title_color", "type": "color_picker", "default_value": "#053b3f", "instructions": "Text color for section titles", "enable_opacity": true},
-                        {"key": "field_details_col0_bg_tab0", "label": "Column 0 Background (Tab 0)", "name": "col0_bg_tab0", "type": "color_picker", "default_value": "#f2ecf2", "instructions": "Background for column 0 when Essential tab is active", "enable_opacity": true},
-                        {"key": "field_details_col0_color_tab0", "label": "Column 0 Text Color (Tab 0)", "name": "col0_color_tab0", "type": "color_picker", "default_value": "#35062a", "instructions": "Text color for column 0 when Essential tab is active", "enable_opacity": true},
-                        {"key": "field_details_col1_bg_tab0", "label": "Column 1 Background (Tab 0)", "name": "col1_bg_tab0", "type": "color_picker", "default_value": "#053b3f", "instructions": "Background for column 1 when Essential tab is active", "enable_opacity": true},
-                        {"key": "field_details_col1_color_tab0", "label": "Column 1 Text Color (Tab 0)", "name": "col1_color_tab0", "type": "color_picker", "default_value": "#ffffff", "instructions": "Text color for column 1 when Essential tab is active", "enable_opacity": true},
-                        {"key": "field_details_col2_bg_tab0", "label": "Column 2 Background (Tab 0)", "name": "col2_bg_tab0", "type": "color_picker", "default_value": "#fed36f", "instructions": "Background for column 2 when Essential tab is active", "enable_opacity": true},
-                        {"key": "field_details_col2_color_tab0", "label": "Column 2 Text Color (Tab 0)", "name": "col2_color_tab0", "type": "color_picker", "default_value": "#35062a", "instructions": "Text color for column 2 when Essential tab is active", "enable_opacity": true},
-                        {"key": "field_details_col1_bg_tab1", "label": "Column 1 Background (Tab 1)", "name": "col1_bg_tab1", "type": "color_picker", "default_value": "#053b3f", "instructions": "Background for column 1 when Comprehensive tab is active", "enable_opacity": true},
-                        {"key": "field_details_col1_color_tab1", "label": "Column 1 Text Color (Tab 1)", "name": "col1_color_tab1", "type": "color_picker", "default_value": "#ffffff", "instructions": "Text color for column 1 when Comprehensive tab is active", "enable_opacity": true},
-                        {"key": "field_details_col2_bg_tab1", "label": "Column 2 Background (Tab 1)", "name": "col2_bg_tab1", "type": "color_picker", "default_value": "#fed36f", "instructions": "Background for column 2 when Comprehensive tab is active", "enable_opacity": true},
-                        {"key": "field_details_col2_color_tab1", "label": "Column 2 Text Color (Tab 1)", "name": "col2_color_tab1", "type": "color_picker", "default_value": "#35062a", "instructions": "Text color for column 2 when Comprehensive tab is active", "enable_opacity": true},
-                        {"key": "field_details_col1_bg_tab2", "label": "Column 1 Background (Tab 2)", "name": "col1_bg_tab2", "type": "color_picker", "default_value": "#053b3f", "instructions": "Background for column 1 when Advanced tab is active", "enable_opacity": true},
-                        {"key": "field_details_col1_color_tab2", "label": "Column 1 Text Color (Tab 2)", "name": "col1_color_tab2", "type": "color_picker", "default_value": "#ffffff", "instructions": "Text color for column 1 when Advanced tab is active", "enable_opacity": true},
-                        {"key": "field_details_col2_bg_tab2", "label": "Column 2 Background (Tab 2)", "name": "col2_bg_tab2", "type": "color_picker", "default_value": "#fed36f", "instructions": "Background for column 2 when Advanced tab is active", "enable_opacity": true},
-                        {"key": "field_details_col2_color_tab2", "label": "Column 2 Text Color (Tab 2)", "name": "col2_color_tab2", "type": "color_picker", "default_value": "#35062a", "instructions": "Text color for column 2 when Advanced tab is active", "enable_opacity": true}
+                        {"key": "field_details_additional_package", "label": "Additional Package", "name": "additional_package", "type": "relationship", "post_type": ["package"], "filters": ["search", "taxonomy"], "return_format": "id", "max": 1, "instructions": "Optional: select one additional package to display horizontally below the comparison grid."}
                     ],
                     "min": "",
                     "max": ""
@@ -121,10 +103,10 @@
                         {"key": "field_cta_pkg_button_link", "label": "Button Link", "name": "button_link", "type": "url"},
                         {"key": "field_cta_pkg_image", "label": "Image", "name": "image", "type": "image", "return_format": "array", "preview_size": "medium"},
                         {"key": "field_cta_pkg_style_tab", "label": "Style", "name": "", "type": "tab", "placement": "top"},
-                        {"key": "field_cta_pkg_bg_block_color", "label": "Background Block Color", "name": "bg_block_color", "type": "color_picker", "default_value": "#f2ecf2", "instructions": "Outer container background"},
+                        {"key": "field_cta_pkg_bg_block_color", "label": "Background Block Color", "name": "bg_block_color", "type": "color_picker", "default_value": "#eff5ff", "instructions": "Outer container background"},
                         {"key": "field_cta_pkg_bg_inner_color", "label": "Background Inner Color", "name": "bg_inner_color", "type": "color_picker", "default_value": "#FFFFFF", "instructions": "Inner content background (image side)"},
                         {"key": "field_cta_pkg_heading_color", "label": "Heading Color", "name": "heading_color", "type": "color_picker", "default_value": "#9a1078"},
-                        {"key": "field_cta_pkg_subheading_color", "label": "Subheading Color", "name": "subheading_color", "type": "color_picker", "default_value": "#053b3f"},
+                        {"key": "field_cta_pkg_subheading_color", "label": "Subheading Color", "name": "subheading_color", "type": "color_picker", "default_value": "#262f3e"},
                         {"key": "field_cta_pkg_button_text_color", "label": "Button Text Color", "name": "button_text_color", "type": "color_picker", "default_value": "#FFFFFF"},
                         {"key": "field_cta_pkg_button_bg_color", "label": "Button Background Color", "name": "button_bg_color", "type": "color_picker", "default_value": "#9a1078"}
                     ],

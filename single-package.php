@@ -20,8 +20,8 @@ get_header();
         $package_title = get_the_title();
         $package_short_description = function_exists( 'get_field' ) ? get_field( 'short_description', $package_id ) : '';
         $package_featured_image = get_the_post_thumbnail_url( $package_id, 'large' );
-        $package_bg_color = function_exists( 'get_field' ) ? get_field( 'package_bg_color', $package_id ) : '#f2ecf2';
-        $package_bg_color = ! empty( $package_bg_color ) ? $package_bg_color : '#f2ecf2';
+        $package_bg_color = function_exists( 'get_field' ) ? get_field( 'package_bg_color', $package_id ) : '#eff5ff';
+        $package_bg_color = ! empty( $package_bg_color ) ? $package_bg_color : '#eff5ff';
         
         ?>
         
@@ -76,14 +76,14 @@ get_header();
         <?php
         if ( function_exists( 'have_rows' ) ) {
             $sections = get_field( 'include_sections', $package_id );
-            $package_text_color = function_exists( 'get_field' ) ? get_field( 'package_text_color', $package_id ) : '#053b3f';
-            $package_text_color = ! empty( $package_text_color ) ? $package_text_color : '#053b3f';
+            $package_text_color = function_exists( 'get_field' ) ? get_field( 'package_text_color', $package_id ) : '#262f3e';
+            $package_text_color = ! empty( $package_text_color ) ? $package_text_color : '#262f3e';
             $package_icon_bg_color = function_exists( 'get_field' ) ? get_field( 'package_icon_bg_color', $package_id ) : '#9a1078';
             $package_icon_bg_color = ! empty( $package_icon_bg_color ) ? $package_icon_bg_color : '#9a1078';
             $package_icon_color = function_exists( 'get_field' ) ? get_field( 'package_icon_color', $package_id ) : '#ffffff';
             $package_icon_color = ! empty( $package_icon_color ) ? $package_icon_color : '#ffffff';
-            $package_arrow_color = function_exists( 'get_field' ) ? get_field( 'package_arrow_color', $package_id ) : '#053b3f';
-            $package_arrow_color = ! empty( $package_arrow_color ) ? $package_arrow_color : '#053b3f';
+            $package_arrow_color = function_exists( 'get_field' ) ? get_field( 'package_arrow_color', $package_id ) : '#262f3e';
+            $package_arrow_color = ! empty( $package_arrow_color ) ? $package_arrow_color : '#262f3e';
             
             if ( $sections && is_array( $sections ) && count( $sections ) > 0 ) :
         ?>

@@ -53,41 +53,11 @@ function hello_child_render_flexible_layout( $layout ) {
         
         // Special handling for packages-details layout with its unique field key naming
         if ( $layout_type === 'packages-details' ) {
-            // Debug: Log all available keys in layout
-            if ( current_user_can( 'manage_options' ) ) {
-                error_log( 'Packages Details Layout Keys: ' . print_r( array_keys( $layout ), true ) );
-            }
-            
             // Map ACF field keys to field names
             $data['heading']     = $layout['field_details_heading'] ?? '';
             $data['description'] = $layout['field_details_description'] ?? '';
             $data['packages']    = $layout['field_details_packages'] ?? array();
             $data['additional_package'] = $layout['field_details_additional_package'] ?? array();
-            
-            // Style fields - use field_details_* keys like other fields
-            $data['section_title_bg'] = $layout['field_details_section_title_bg'] ?? '#f2ecf2';
-            $data['section_title_color'] = $layout['field_details_section_title_color'] ?? '#053b3f';
-            $data['col0_bg_tab0'] = $layout['field_details_col0_bg_tab0'] ?? '#f2ecf2';
-            $data['col0_color_tab0'] = $layout['field_details_col0_color_tab0'] ?? '#35062a';
-            $data['col1_bg_tab0'] = $layout['field_details_col1_bg_tab0'] ?? '#053b3f';
-            $data['col1_color_tab0'] = $layout['field_details_col1_color_tab0'] ?? '#ffffff';
-            $data['col2_bg_tab0'] = $layout['field_details_col2_bg_tab0'] ?? '#fed36f';
-            $data['col2_color_tab0'] = $layout['field_details_col2_color_tab0'] ?? '#35062a';
-            $data['col1_bg_tab1'] = $layout['field_details_col1_bg_tab1'] ?? '#053b3f';
-            $data['col1_color_tab1'] = $layout['field_details_col1_color_tab1'] ?? '#ffffff';
-            $data['col2_bg_tab1'] = $layout['field_details_col2_bg_tab1'] ?? '#fed36f';
-            $data['col2_color_tab1'] = $layout['field_details_col2_color_tab1'] ?? '#35062a';
-            $data['col1_bg_tab2'] = $layout['field_details_col1_bg_tab2'] ?? '#053b3f';
-            $data['col1_color_tab2'] = $layout['field_details_col1_color_tab2'] ?? '#ffffff';
-            $data['col2_bg_tab2'] = $layout['field_details_col2_bg_tab2'] ?? '#fed36f';
-            $data['col2_color_tab2'] = $layout['field_details_col2_color_tab2'] ?? '#35062a';
-            
-            // Debug: Log style values
-            if ( current_user_can( 'manage_options' ) ) {
-                error_log( 'Section Title BG: ' . $data['section_title_bg'] );
-                error_log( 'Col0 Tab0 BG: ' . $data['col0_bg_tab0'] );
-            }
-            
             $data['acf_fc_layout'] = $layout['acf_fc_layout'];
         } elseif ( $layout_type === 'cta-section' ) {
             // Map ACF field keys (and nested repeater field keys) to field names
@@ -121,10 +91,10 @@ function hello_child_render_flexible_layout( $layout ) {
             $data['button_text']          = $layout['field_cta_pkg_button_text'] ?? '';
             $data['button_link']          = $layout['field_cta_pkg_button_link'] ?? '';
             $data['image']                = $layout['field_cta_pkg_image'] ?? array();
-            $data['bg_block_color']       = $layout['field_cta_pkg_bg_block_color'] ?? '#f2ecf2';
+            $data['bg_block_color']       = $layout['field_cta_pkg_bg_block_color'] ?? '#eff5ff';
             $data['bg_inner_color']       = $layout['field_cta_pkg_bg_inner_color'] ?? '#FFFFFF';
             $data['heading_color']        = $layout['field_cta_pkg_heading_color'] ?? '#9a1078';
-            $data['subheading_color']     = $layout['field_cta_pkg_subheading_color'] ?? '#053b3f';
+            $data['subheading_color']     = $layout['field_cta_pkg_subheading_color'] ?? '#262f3e';
             $data['button_text_color']    = $layout['field_cta_pkg_button_text_color'] ?? '#FFFFFF';
             $data['button_bg_color']      = $layout['field_cta_pkg_button_bg_color'] ?? '#9a1078';
             $data['acf_fc_layout'] = $layout['acf_fc_layout'];
