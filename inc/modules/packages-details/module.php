@@ -16,19 +16,19 @@ $additional_package_raw = $data['additional_package'] ?? array();
 $additional_package_id = 0;
 
 // Get style settings
-$section_title_bg = $data['section_title_bg'] ?? '#f2ecf2';
-$section_title_color = $data['section_title_color'] ?? '#053b3f';
-$col0_bg_tab0 = $data['col0_bg_tab0'] ?? '#f2ecf2';
+$section_title_bg = $data['section_title_bg'] ?? '#ffffff';
+$section_title_color = $data['section_title_color'] ?? '#262f3e';
+$col0_bg_tab0 = $data['col0_bg_tab0'] ?? '#ffffff';
 $col0_color_tab0 = $data['col0_color_tab0'] ?? '#35062a';
-$col1_bg_tab0 = $data['col1_bg_tab0'] ?? '#053b3f';
+$col1_bg_tab0 = $data['col1_bg_tab0'] ?? '#262f3e';
 $col1_color_tab0 = $data['col1_color_tab0'] ?? '#ffffff';
 $col2_bg_tab0 = $data['col2_bg_tab0'] ?? '#fed36f';
 $col2_color_tab0 = $data['col2_color_tab0'] ?? '#35062a';
-$col1_bg_tab1 = $data['col1_bg_tab1'] ?? '#053b3f';
+$col1_bg_tab1 = $data['col1_bg_tab1'] ?? '#262f3e';
 $col1_color_tab1 = $data['col1_color_tab1'] ?? '#ffffff';
 $col2_bg_tab1 = $data['col2_bg_tab1'] ?? '#fed36f';
 $col2_color_tab1 = $data['col2_color_tab1'] ?? '#35062a';
-$col1_bg_tab2 = $data['col1_bg_tab2'] ?? '#053b3f';
+$col1_bg_tab2 = $data['col1_bg_tab2'] ?? '#262f3e';
 $col1_color_tab2 = $data['col1_color_tab2'] ?? '#ffffff';
 $col2_bg_tab2 = $data['col2_bg_tab2'] ?? '#fed36f';
 $col2_color_tab2 = $data['col2_color_tab2'] ?? '#35062a';
