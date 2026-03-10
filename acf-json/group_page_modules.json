@@ -105,10 +105,10 @@
                         {"key": "field_cta_pkg_style_tab", "label": "Style", "name": "", "type": "tab", "placement": "top"},
                         {"key": "field_cta_pkg_bg_block_color", "label": "Background Block Color", "name": "bg_block_color", "type": "color_picker", "default_value": "#eff5ff", "instructions": "Outer container background"},
                         {"key": "field_cta_pkg_bg_inner_color", "label": "Background Inner Color", "name": "bg_inner_color", "type": "color_picker", "default_value": "#FFFFFF", "instructions": "Inner content background (image side)"},
-                        {"key": "field_cta_pkg_heading_color", "label": "Heading Color", "name": "heading_color", "type": "color_picker", "default_value": "#9a1078"},
+                        {"key": "field_cta_pkg_heading_color", "label": "Heading Color", "name": "heading_color", "type": "color_picker", "default_value": "#323f53"},
                         {"key": "field_cta_pkg_subheading_color", "label": "Subheading Color", "name": "subheading_color", "type": "color_picker", "default_value": "#262f3e"},
                         {"key": "field_cta_pkg_button_text_color", "label": "Button Text Color", "name": "button_text_color", "type": "color_picker", "default_value": "#FFFFFF"},
-                        {"key": "field_cta_pkg_button_bg_color", "label": "Button Background Color", "name": "button_bg_color", "type": "color_picker", "default_value": "#9a1078"}
+                        {"key": "field_cta_pkg_button_bg_color", "label": "Button Background Color", "name": "button_bg_color", "type": "color_picker", "default_value": "#323f53"}
                     ],
                     "min": "",
                     "max": ""

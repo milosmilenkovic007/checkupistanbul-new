@@ -273,7 +273,7 @@
         width: 20px;
         height: 20px;
         margin-right: 12px;
-        background: var(--pkg-icon-bg-color, #9a1078);
+        background: var(--pkg-icon-bg-color, #323f53);
         color: var(--pkg-icon-color, #ffffff);
         border-radius: 50%;
         font-size: 0.7rem;
@@ -650,7 +650,7 @@
         gap: 8px;
         font-size: 1rem;
         font-weight: 600;
-        color: #9a1078;
+        color: #323f53;
         transition: gap 0.3s ease;
 
         &:hover {

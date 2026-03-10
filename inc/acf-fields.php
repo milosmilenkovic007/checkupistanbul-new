@@ -370,7 +370,7 @@ function hello_child_register_acf_field_groups() {
                                 'label' => 'Heading Color',
                                 'name' => 'heading_color',
                                 'type' => 'color_picker',
-                                'default_value' => '#9a1078',
+                                'default_value' => '#323f53',
                             ),
                             array(
                                 'key' => 'field_cta_pkg_subheading_color',
@@ -391,7 +391,7 @@ function hello_child_register_acf_field_groups() {
                                 'label' => 'Button Background Color',
                                 'name' => 'button_bg_color',
                                 'type' => 'color_picker',
-                                'default_value' => '#9a1078',
+                                'default_value' => '#323f53',
                             ),
                         ),
                     ),
@@ -568,7 +568,7 @@ function hello_child_register_acf_field_groups() {
                 'name' => 'package_icon_bg_color',
                 'type' => 'color_picker',
                 'instructions' => 'Background color for checkmark icons (circle background)',
-                'default_value' => '#9a1078',
+                'default_value' => '#323f53',
                 'wrapper' => array(
                     'width' => '33',
                 ),
