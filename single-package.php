@@ -92,7 +92,7 @@ get_header();
                 <h2 class="package-sections__heading">What's Included in Your Check-Up</h2>
                 <p class="package-sections__subheading">A carefully selected set of essential diagnostic tests designed for clarity, accuracy, and peace of mind.</p>
                 
-                <div class="package-sections__accordion" style="--pkg-bg-color: <?php echo esc_attr( $package_bg_color ); ?>; --pkg-text-color: <?php echo esc_attr( $package_text_color ); ?>; --pkg-icon-bg-color: <?php echo esc_attr( $package_icon_bg_color ); ?>; --pkg-icon-color: <?php echo esc_attr( $package_icon_color ); ?>; --pkg-arrow-color: <?php echo esc_attr( $package_arrow_color ); ?>; background: <?php echo esc_attr( $package_bg_color ); ?>; padding: 40px; border-radius: 16px;">
+                <div class="package-sections__accordion" style="--pkg-bg-color: #f5f9fb; --pkg-text-color: #262f3f; --pkg-icon-bg-color: #323f53; --pkg-icon-color: #ffffff; --pkg-arrow-color: #323f53; background: #dce6f5; padding: 40px; border-radius: 16px;">
                     <?php
                     foreach ( $sections as $index => $section ) :
                         $section_title_line_1 = trim( (string) ( $section['title_line_1'] ?? '' ) );
