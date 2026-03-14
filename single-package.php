@@ -1,7 +1,7 @@
 <?php
 /**
- * Single Package Template
- * Professional layout for Package CPT with ACF flexible modules
+ * Single Program Template
+ * Professional layout for Program CPT with ACF flexible modules
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -25,7 +25,7 @@ get_header();
         
         ?>
         
-        <!-- Package Hero Banner (ACF Style) -->
+        <!-- Program Hero Banner (ACF Style) -->
         <section class="hero-section-module package-hero-banner">
             <div class="hero-section-module__inner">
                 <!-- Content -->
@@ -42,7 +42,7 @@ get_header();
                     
                     <div class="hero-section-module__button">
                         <a href="#package-sections" class="btn btn--primary">
-                            <?php echo esc_html__( 'Explore Package', 'hello-elementor-child' ); ?>
+                            <?php echo esc_html__( 'Explore Program', 'hello-elementor-child' ); ?>
                         </a>
                     </div>
                 </div>
@@ -58,7 +58,7 @@ get_header();
             </div>
         </section>
         
-        <!-- Package Content (Main Editor) -->
+        <!-- Program Content (Main Editor) -->
         <?php
         $post_content = trim( get_the_content() );
         if ( $post_content ) :
@@ -72,7 +72,7 @@ get_header();
         </section>
         <?php endif; ?>
         
-        <!-- Package Sections (ACF include_sections field) - Accordion Style -->
+        <!-- Program Sections (ACF include_sections field) - Accordion Style -->
         <?php
         if ( function_exists( 'have_rows' ) ) {
             $sections = get_field( 'include_sections', $package_id );
@@ -150,7 +150,7 @@ get_header();
         }
         ?>
         
-        <!-- Package CTA Section -->
+        <!-- Program CTA Section -->
         <?php
         $cta_heading = function_exists( 'get_field' ) ? get_field( 'package_cta_heading', $package_id ) : '';
         $cta_subheading = function_exists( 'get_field' ) ? get_field( 'package_cta_subheading', $package_id ) : '';
@@ -197,7 +197,7 @@ get_header();
         </section>
         <?php endif; ?>
         
-        <!-- Other Packages Section -->
+        <!-- Other Programs Section -->
         <?php
         $other_packages_args = array(
             'post_type'      => 'package',
@@ -214,7 +214,7 @@ get_header();
         <section class="other-packages">
             <div class="other-packages__inner">
                 <div class="other-packages__header">
-                    <h2 class="other-packages__title"><?php esc_html_e( 'Explore Our Diagnostic Packages', 'hello-elementor-child' ); ?></h2>
+                    <h2 class="other-packages__title"><?php esc_html_e( 'Explore Our Diagnostic Programs', 'hello-elementor-child' ); ?></h2>
                     <p class="other-packages__subtitle"><?php esc_html_e( 'A selection of specialised check-up programs designed to match different medical needs and levels of care.', 'hello-elementor-child' ); ?></p>
                 </div>
                 <div class="other-packages__grid">
@@ -375,7 +375,7 @@ get_header();
         </section>
         <?php endif; ?>
         
-        <!-- Package ACF Flexible Modules -->
+        <!-- Program ACF Flexible Modules -->
         <?php
         if ( function_exists( 'have_rows' ) && have_rows( 'page_modules', $package_id ) ) :
         ?>

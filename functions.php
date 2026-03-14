@@ -53,39 +53,42 @@ function hello_elementor_child_enqueue_styles() {
         true
     );
 
-    // Enqueue packages CSS on packages page
-    if ( is_page( 'our-packages' ) ) {
+    // Enqueue page-specific assets on the programs landing page if needed.
+    if ( is_page( 'our-programs' ) || is_page( 'our-packages' ) ) {
         // CSS already included in main.css, but can add page-specific if needed
     }
 }
 add_action( 'wp_enqueue_scripts', 'hello_elementor_child_enqueue_styles', 20 );
 
 /**
- * Packages CPT + taxonomies
+ * Programs CPT + taxonomies
  */
 function hello_child_register_packages_cpt() {
     $labels = array(
-        'name'                  => __( 'Packages', 'hello-elementor-child' ),
-        'singular_name'         => __( 'Package', 'hello-elementor-child' ),
-        'menu_name'             => __( 'Packages', 'hello-elementor-child' ),
-        'name_admin_bar'        => __( 'Package', 'hello-elementor-child' ),
+        'name'                  => __( 'Programs', 'hello-elementor-child' ),
+        'singular_name'         => __( 'Program', 'hello-elementor-child' ),
+        'menu_name'             => __( 'Programs', 'hello-elementor-child' ),
+        'name_admin_bar'        => __( 'Program', 'hello-elementor-child' ),
         'add_new'               => __( 'Add New', 'hello-elementor-child' ),
-        'add_new_item'          => __( 'Add New Package', 'hello-elementor-child' ),
-        'new_item'              => __( 'New Package', 'hello-elementor-child' ),
-        'edit_item'             => __( 'Edit Package', 'hello-elementor-child' ),
-        'view_item'             => __( 'View Package', 'hello-elementor-child' ),
-        'all_items'             => __( 'All Packages', 'hello-elementor-child' ),
-        'search_items'          => __( 'Search Packages', 'hello-elementor-child' ),
-        'not_found'             => __( 'No packages found.', 'hello-elementor-child' ),
-        'not_found_in_trash'    => __( 'No packages found in Trash.', 'hello-elementor-child' ),
+        'add_new_item'          => __( 'Add New Program', 'hello-elementor-child' ),
+        'new_item'              => __( 'New Program', 'hello-elementor-child' ),
+        'edit_item'             => __( 'Edit Program', 'hello-elementor-child' ),
+        'view_item'             => __( 'View Program', 'hello-elementor-child' ),
+        'all_items'             => __( 'All Programs', 'hello-elementor-child' ),
+        'search_items'          => __( 'Search Programs', 'hello-elementor-child' ),
+        'not_found'             => __( 'No programs found.', 'hello-elementor-child' ),
+        'not_found_in_trash'    => __( 'No programs found in Trash.', 'hello-elementor-child' ),
     );
 
     $args = array(
         'labels'             => $labels,
         'public'             => true,
         'show_in_rest'       => true,
-        'has_archive'        => true,
-        'rewrite'            => array( 'slug' => 'packages' ),
+        'has_archive'        => 'programs',
+        'rewrite'            => array(
+            'slug'       => 'program',
+            'with_front' => false,
+        ),
         'menu_position'      => 20,
         'menu_icon'          => 'dashicons-clipboard',
         'supports'           => array( 'title', 'editor', 'thumbnail', 'excerpt' ),
@@ -103,14 +106,17 @@ function hello_child_register_packages_taxonomies() {
         array( 'package' ),
         array(
             'labels' => array(
-                'name'          => __( 'Package Categories', 'hello-elementor-child' ),
-                'singular_name' => __( 'Package Category', 'hello-elementor-child' ),
+                'name'          => __( 'Program Categories', 'hello-elementor-child' ),
+                'singular_name' => __( 'Program Category', 'hello-elementor-child' ),
             ),
             'public'            => true,
             'show_in_rest'      => true,
             'hierarchical'      => true,
             'show_admin_column' => true,
-            'rewrite'           => array( 'slug' => 'package-category' ),
+            'rewrite'           => array(
+                'slug'       => 'program-category',
+                'with_front' => false,
+            ),
         )
     );
 
@@ -120,21 +126,119 @@ function hello_child_register_packages_taxonomies() {
         array( 'package' ),
         array(
             'labels' => array(
-                'name'          => __( 'Package Tags', 'hello-elementor-child' ),
-                'singular_name' => __( 'Package Tag', 'hello-elementor-child' ),
+                'name'          => __( 'Program Tags', 'hello-elementor-child' ),
+                'singular_name' => __( 'Program Tag', 'hello-elementor-child' ),
             ),
             'public'            => true,
             'show_in_rest'      => true,
             'hierarchical'      => false,
             'show_admin_column' => true,
-            'rewrite'           => array( 'slug' => 'package-tag' ),
+            'rewrite'           => array(
+                'slug'       => 'program-tag',
+                'with_front' => false,
+            ),
         )
     );
 }
 add_action( 'init', 'hello_child_register_packages_taxonomies' );
 
 /**
- * Redirect Packages archive (and related taxonomies) to the curated /our-packages/ page on frontend.
+ * Flush rewrite rules once after permalink structure changes.
+ */
+function hello_child_maybe_flush_rewrite_rules() {
+    if ( ! is_admin() ) {
+        return;
+    }
+
+    $rewrite_version = 'program-permalinks-v2';
+    if ( get_option( 'hello_child_rewrite_version' ) === $rewrite_version ) {
+        return;
+    }
+
+    flush_rewrite_rules( false );
+    update_option( 'hello_child_rewrite_version', $rewrite_version );
+}
+add_action( 'admin_init', 'hello_child_maybe_flush_rewrite_rules' );
+
+/**
+ * Rename the curated landing page slug from our-packages to our-programs once.
+ */
+function hello_child_maybe_rename_programs_landing_page() {
+    if ( ! is_admin() || ! current_user_can( 'manage_options' ) ) {
+        return;
+    }
+
+    $migration_version = 'our-programs-page-v1';
+    if ( get_option( 'hello_child_programs_page_version' ) === $migration_version ) {
+        return;
+    }
+
+    $page = get_page_by_path( 'our-programs' );
+    if ( $page instanceof WP_Post ) {
+        update_option( 'hello_child_programs_page_version', $migration_version );
+        return;
+    }
+
+    $legacy_page = get_page_by_path( 'our-packages' );
+    if ( $legacy_page instanceof WP_Post ) {
+        wp_update_post(
+            array(
+                'ID'        => $legacy_page->ID,
+                'post_name' => 'our-programs',
+                'post_title'=> 'Our Programs',
+            )
+        );
+    }
+
+    update_option( 'hello_child_programs_page_version', $migration_version );
+}
+add_action( 'admin_init', 'hello_child_maybe_rename_programs_landing_page', 20 );
+
+/**
+ * Redirect legacy package URLs to the current program permalinks.
+ */
+function hello_child_redirect_legacy_package_urls() {
+    if ( is_admin() || is_feed() || is_preview() ) {
+        return;
+    }
+
+    if ( defined( 'REST_REQUEST' ) && REST_REQUEST ) {
+        return;
+    }
+
+    $request_uri = isset( $_SERVER['REQUEST_URI'] ) ? wp_unslash( $_SERVER['REQUEST_URI'] ) : '';
+    $request_path = trim( (string) wp_parse_url( $request_uri, PHP_URL_PATH ), '/' );
+    if ( '' === $request_path ) {
+        return;
+    }
+
+    if ( preg_match( '#^(?:package|packages)/([^/]+)/?$#', $request_path, $matches ) ) {
+        $program = get_page_by_path( sanitize_title( $matches[1] ), OBJECT, 'package' );
+        if ( $program instanceof WP_Post ) {
+            wp_safe_redirect( get_permalink( $program ), 301 );
+            exit;
+        }
+    }
+
+    if ( preg_match( '#^(?:packages|package)/?$#', $request_path ) ) {
+        wp_safe_redirect( home_url( '/our-programs/' ), 301 );
+        exit;
+    }
+
+    if ( preg_match( '#^package-category(?:/.*)?$#', $request_path ) || preg_match( '#^package-tag(?:/.*)?$#', $request_path ) ) {
+        wp_safe_redirect( home_url( '/our-programs/' ), 301 );
+        exit;
+    }
+
+    if ( preg_match( '#^our-packages/?$#', $request_path ) ) {
+        wp_safe_redirect( home_url( '/our-programs/' ), 301 );
+        exit;
+    }
+}
+add_action( 'template_redirect', 'hello_child_redirect_legacy_package_urls', 5 );
+
+/**
+ * Redirect Programs archive (and related taxonomies) to the curated /our-programs/ page on frontend.
  */
 function hello_child_redirect_package_archive() {
     if ( is_admin() || is_feed() || is_preview() ) {
@@ -151,7 +255,7 @@ function hello_child_redirect_package_archive() {
         return;
     }
 
-    $target = home_url( '/our-packages/' );
+    $target = home_url( '/our-programs/' );
     wp_safe_redirect( $target, 301 );
     exit;
 }
